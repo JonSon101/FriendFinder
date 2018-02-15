@@ -1,9 +1,9 @@
 //Data
 var friendsArray = [
   {
-    "name":"Ahmed",
-    "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
-    "scores":[
+    "name":"Cow",
+    "photo":"https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Cow_female_black_white.jpg/220px-Cow_female_black_white.jpg",
+    "scores[]":[
         5,
         1,
         4,

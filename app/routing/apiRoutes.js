@@ -11,9 +11,34 @@ module.exports = function(app) {
     
     //API Post requests
     app.post("/api/friends", function(req, res ) {
-        //This will be used to handle incoming survey results. 
-        //This route will also be used to handle the compatibility logic. 
+        
+        //push new person to data
+        friendsData.push(req.body);
 
+        //track closest friend
+        var closestFriendScore = 40;
+        var closestFriendIndex = 0;
+
+        //loop through saved friends
+        for (var i = 0; i < friendsData.length - 1; i++) {
+            
+            var matchScore = 0;
+            //loop through answer scores
+            for (var k = 0; k < 10; k++) {
+                //add the difference of current user and friend[i] score
+                matchScore += (req.body['scores[]'][k] - friendsData[i]['scores[]'][k]);
+            }
+            matchScore = Math.abs(matchScore);
+            console.log("Friend Index:", i, "MatchScore:", matchScore);
+            
+            if (matchScore < closestFriendScore) {
+                closestFriendScore = matchScore;
+                closestFriendIndex = i;
+            }
+        }
+        
+        //This route will also be used to handle the compatibility logic. 
+        res.json(friendsData[closestFriendIndex]);
     });
 };
 
